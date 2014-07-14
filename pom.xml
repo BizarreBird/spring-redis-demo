@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.xiaohao</groupId>
-    <artifactId>nsite</artifactId>
+    <artifactId>springRedisDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <!--添加开发人员的信息-->
@@ -115,7 +115,7 @@
             </resource>
         </resources>
         <!--定义打包的文件名-->
-        <finalName>xiaohao_test</finalName>
+        <finalName>srping-redis-demo</finalName>
 
         <plugins>
             <plugin>
