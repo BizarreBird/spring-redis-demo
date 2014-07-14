@@ -7,9 +7,18 @@
            http://www.springframework.org/schema/context/spring-context-2.5.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--引入redis配置文件 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:redis.properties</value>
+            </list>
+        </property>
+    </bean>
+
     <bean id="jedisConnFactory"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-          p:usePool="true" p:port="6379" p:hostName="127.0.0.1" p:database="0"/>
+          p:usePool="${usePool}" p:port="${port}" p:hostName="${ip}" p:database="${database}"/>
 
     <!-- redis template definition -->
     <bean id="redisTemplate"
