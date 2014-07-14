@@ -34,7 +34,7 @@ public class Example {
     private ValueOperations<String,String> valueOperations;
 
     /**
-     * template 可以按照set注入 对象redis里面的普通类型
+     * template 可以按照zset注入
      */
     @Resource(name="redisTemplate")
     private ZSetOperations<String,String> zSetOperations;

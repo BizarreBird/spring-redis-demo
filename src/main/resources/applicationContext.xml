@@ -16,11 +16,12 @@
         </property>
     </bean>
 
+    <!--定义连接工厂-->
     <bean id="jedisConnFactory"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
           p:usePool="${usePool}" p:port="${port}" p:hostName="${ip}" p:database="${database}"/>
 
-    <!-- redis template definition -->
+    <!-- redis 模板方法 -->
     <bean id="redisTemplate"
           class="org.springframework.data.redis.core.RedisTemplate"
           p:connectionFactory-ref="jedisConnFactory">
