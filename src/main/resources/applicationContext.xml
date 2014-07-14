@@ -25,18 +25,42 @@
     <bean id="redisTemplate"
           class="org.springframework.data.redis.core.RedisTemplate"
           p:connectionFactory-ref="jedisConnFactory">
-      <!--添加这些序列化器 防止使用spring redis操作redis后 redis的key是乱码 的情况-->
+        <!--添加这些序列化器 防止使用spring redis操作redis后 redis的key是乱码 的情况-->
         <property name="keySerializer">
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
         </property>
         <property name="valueSerializer">
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
         </property>
         <property name="hashKeySerializer">
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
         </property>
         <property name="hashValueSerializer">
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+    </bean>
+
+    <!--定义redis 容器-->
+
+    <bean id="messageLisenner" class="com.xiaohao.lisenner.MyMessageDelegateListener"/>
+    <!--<bean id="topic" class="org.springframework.data.redis.listener.ChannelTopic">-->
+    <!--<constructor-arg name="name" value="news.*"/>-->
+    <!--</bean>-->
+
+    <!--定义redis容器-->
+    <bean id="redisContainer" class="org.springframework.data.redis.listener.RedisMessageListenerContainer"
+          p:connectionFactory-ref="jedisConnFactory">
+       <!--定义reids容器的监听器-->
+        <property name="messageListeners">
+            <map>
+                <entry key-ref="messageLisenner">
+                    <!--定义发送的频道-->
+                    <bean class="org.springframework.data.redis.listener.ChannelTopic">
+                        <!--以news.开头的所有的频道都能接收到消息-->
+                        <constructor-arg value="news.*"/>
+                    </bean>
+                </entry>
+            </map>
         </property>
     </bean>
 

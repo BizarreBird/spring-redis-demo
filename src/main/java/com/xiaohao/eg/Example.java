@@ -3,6 +3,8 @@ package com.xiaohao.eg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
+import redis.clients.jedis.JedisPubSub;
+
 import javax.annotation.Resource;
 
 /**
@@ -45,11 +47,13 @@ public class Example {
     @Resource(name="redisTemplate")
     private HashOperations<String,String,String> hashOperations;
 
+
     public void test(){
      //   setOperations.add("t","t");
         //集合类型操作
         listOperations.leftPush("test","好小胖");
-
+        //利用模板 想制定频道发送消息
+        redisTemplate.convertAndSend("news.*","testtestestetset");
     }
 
 
