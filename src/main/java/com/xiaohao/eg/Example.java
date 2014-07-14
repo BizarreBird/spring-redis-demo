@@ -49,9 +49,9 @@ public class Example {
     public void test(){
      //   setOperations.add("t","t");
     //    setOperations.add("s","s");
-      //  listOperations.leftPush("test","1");
-        String tt =listOperations.leftPop("test");
-        System.out.println(tt);
+        listOperations.leftPush("test","1");
+       // String tt =listOperations.leftPop("test");
+       // System.out.println(tt);
     }
 
 
