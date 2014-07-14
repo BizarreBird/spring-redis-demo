@@ -30,6 +30,7 @@
         </property>
     </bean>
 
+    <!--定义扫描组件的包 这样 就能直接从springApplicationContext get Bean了-->
     <context:component-scan base-package="com.xiaohao"/>
 
 </beans>

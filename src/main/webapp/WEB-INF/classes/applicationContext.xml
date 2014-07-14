@@ -15,6 +15,7 @@
     <bean id="redisTemplate"
           class="org.springframework.data.redis.core.RedisTemplate"
           p:connectionFactory-ref="jedisConnFactory">
+      <!--添加这些序列化器 防止使用spring redis操作redis后 redis的key是乱码 的情况-->
         <property name="keySerializer">
             <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
         </property>
@@ -29,6 +30,7 @@
         </property>
     </bean>
 
+    <!--定义扫描组件的包 这样 就能直接从springApplicationContext get Bean了-->
     <context:component-scan base-package="com.xiaohao"/>
 
 </beans>

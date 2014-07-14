@@ -3,7 +3,6 @@ package com.xiaohao.eg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 
 /**
@@ -48,10 +47,9 @@ public class Example {
 
     public void test(){
      //   setOperations.add("t","t");
-    //    setOperations.add("s","s");
-        listOperations.leftPush("test","1");
-       // String tt =listOperations.leftPop("test");
-       // System.out.println(tt);
+        //集合类型操作
+        listOperations.leftPush("test","好小胖");
+
     }
 
 
@@ -62,5 +60,21 @@ public class Example {
 
     public void setListOperations(ListOperations<String, String> listOperations) {
         this.listOperations = listOperations;
+    }
+
+    public void setSetOperations(SetOperations<String, String> setOperations) {
+        this.setOperations = setOperations;
+    }
+
+    public void setValueOperations(ValueOperations<String, String> valueOperations) {
+        this.valueOperations = valueOperations;
+    }
+
+    public void setzSetOperations(ZSetOperations<String, String> zSetOperations) {
+        this.zSetOperations = zSetOperations;
+    }
+
+    public void setHashOperations(HashOperations<String, String, String> hashOperations) {
+        this.hashOperations = hashOperations;
     }
 }

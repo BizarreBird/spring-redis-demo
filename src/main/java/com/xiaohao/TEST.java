@@ -13,11 +13,14 @@ import java.util.Set;
 public class TEST {
 
     public static void main(String[] args){
+
+       //拿到spring容器
        ApplicationContext ac = new FileSystemXmlApplicationContext("./src/main/resources/applicationContext.xml");
    //    RedisTemplate<String,String> t =(RedisTemplate)ac.getBean("redisTemplate");
      //  Set<String> sets =t.keys("*");
    //    System.out.println(sets.size());
    //    t.boundListOps("test").leftPush("Test");
+
        Example e = (Example)ac.getBean("example");
         e.test();
     }
