@@ -1,9 +1,7 @@
 package com.xiaohao.eg;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SetOperations;
+import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -22,11 +20,31 @@ public class Example {
     @Resource(name="redisTemplate")
     private ListOperations<String,String> listOperations;
 
+    // can also inject as Value, Set, ZSet, and HashOperations
+
     /**
      * template 可以按照set注入 对象redis里面的普通类型
      */
     @Resource(name="redisTemplate")
     private SetOperations<String,String> setOperations;
+
+    /**
+     * template 可以按照set注入 对象redis里面的普通类型
+     */
+    @Resource(name="redisTemplate")
+    private ValueOperations<String,String> valueOperations;
+
+    /**
+     * template 可以按照set注入 对象redis里面的普通类型
+     */
+    @Resource(name="redisTemplate")
+    private ZSetOperations<String,String> zSetOperations;
+
+    /**
+     * template hashOperations 对象redis里面的普通类型
+     */
+    @Resource(name="redisTemplate")
+    private HashOperations<String,String,String> hashOperations;
 
     public void test(){
      //   setOperations.add("t","t");
