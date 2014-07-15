@@ -1,4 +1,4 @@
-package com.xiaohao.lisenner;
+package com.xiaohao.listenner;
 
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;

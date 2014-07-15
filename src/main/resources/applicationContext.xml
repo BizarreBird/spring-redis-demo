@@ -42,7 +42,7 @@
 
     <!--定义redis 容器-->
 
-    <bean id="messageLisenner" class="com.xiaohao.lisenner.MyMessageDelegateListener"/>
+    <bean id="messageLisenner" class="com.xiaohao.listenner.MyMessageDelegateListener"/>
     <!--<bean id="topic" class="org.springframework.data.redis.listener.ChannelTopic">-->
     <!--<constructor-arg name="name" value="news.*"/>-->
     <!--</bean>-->
