@@ -26,7 +26,7 @@ public class Example {
     // can also inject as Value, Set, ZSet, and HashOperations
 
     /**
-     * template 可以按照set注入 对象redis里面的普通类型
+     * template 可以按照set注入 对象redis里面的Set类型
      */
     @Resource(name="redisTemplate")
     private SetOperations<String,String> setOperations;
@@ -38,13 +38,13 @@ public class Example {
     private ValueOperations<String,String> valueOperations;
 
     /**
-     * template 可以按照zset注入
+     * template 可以按照zset注入 对应redis里面的 sortedSet类型
      */
     @Resource(name="redisTemplate")
     private ZSetOperations<String,String> zSetOperations;
 
     /**
-     * template hashOperations 对象redis里面的普通类型
+     * template hashOperations 对象redis里面的hash类型
      */
     @Resource(name="redisTemplate")
     private HashOperations<String,String,String> hashOperations;
