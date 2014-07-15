@@ -1,5 +1,7 @@
 package com.xiaohao.eg;
 
+import com.xiaohao.entity.User;
+import com.xiaohao.util.SerializeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
@@ -54,6 +56,12 @@ public class Example {
         listOperations.leftPush("test","好小胖");
         //利用模板 想制定频道发送消息
         redisTemplate.convertAndSend("news.*","testtestestetset");
+        User user = new User();
+        user.setId(1000);
+        user.setPassword("test");
+        user.setName("test");
+        //存储一个序列化成json的字符串
+        valueOperations.set("userObject", SerializeUtil.obj2Json(user));
     }
 
 
