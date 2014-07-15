@@ -37,4 +37,14 @@ public class SerializeUtil {
         return null;
     }
 
+    /**
+     *
+     * @param json
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static  <T> T json2Obj(String json,java.lang.Class<T> clazz){
+        return JSON.parseObject(json,clazz);
+    }
 }

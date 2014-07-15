@@ -62,6 +62,11 @@ public class Example {
         user.setName("test");
         //存储一个序列化成json的字符串
         valueOperations.set("userObject", SerializeUtil.obj2Json(user));
+        System.out.println();
+        User user1 =SerializeUtil.json2Obj(valueOperations.get("userObject"),User.class);
+        System.out.println(user1.getId());
+        System.out.println(user1.getName());
+        System.out.println(user1.getPassword());
     }
 
 
