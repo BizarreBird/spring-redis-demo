@@ -1,0 +1,8 @@
+D:\redis-2.0.2>redis-cli.exe
+redis> keys *
+1. "test"
+2. "xiaohao"
+3. "userObject"
+redis> get userObject
+"{\"id\":1000,\"name\":\"test\",\"password\":\"test\"}"
+redis>
