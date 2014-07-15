@@ -67,6 +67,20 @@ public class Example {
         System.out.println(user1.getId());
         System.out.println(user1.getName());
         System.out.println(user1.getPassword());
+        //hash类型
+        hashOperations.put("hashtest","xiaohao","testtest");
+        //set类型 resis 2.4以前只能接受一个值
+        //setOperations.add("setTest","my name is","test"); 会报错
+        setOperations.add("setTest","my name is");
+        //sortSet
+        zSetOperations.add("sortSetTest","xiaohao",100);
+        zSetOperations.add("sortSetTest","xiaohaohahahaha",101);
+        //notice!!! value重复的不会存储 所以只存进去了101   104 两个
+        zSetOperations.add("sortSetTest","xiaohao",102);
+        zSetOperations.add("sortSetTest","xiaohao",103);
+        zSetOperations.add("sortSetTest","xiaohao",104);
+
+        //
     }
 
 
