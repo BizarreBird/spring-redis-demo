@@ -45,7 +45,7 @@ public class SerializeUtil {
      *
      * @param json
      * @param clazz
-     * @param <T>
+     * @param <T> 泛型
      * @return
      */
     public static  <T> T json2Obj(String json,java.lang.Class<T> clazz){
