@@ -11,7 +11,6 @@ import java.io.ObjectOutputStream;
 public class SerializeUtil {
 
     /**
-     *
      * @param obj
      * @return
      */
