@@ -10,6 +10,11 @@ import java.io.ObjectOutputStream;
  */
 public class SerializeUtil {
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     public static byte[] obj2Byte(Object obj) {
         ObjectOutputStream oos = null;
         ByteArrayOutputStream baos = null;
