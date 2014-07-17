@@ -15,16 +15,26 @@
             </list>
         </property>
     </bean>
+    <!--连接池 属性定义-->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!--<property name="maxActive" value="32"></property>-->
+        <property name="maxIdle" value="6"></property>
+        <!--<property name="maxWait" value="15000"></property>-->
+        <property name="minEvictableIdleTimeMillis" value="300000"></property>
+        <property name="numTestsPerEvictionRun" value="3"></property>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"></property>
+        <!--<property name="whenExhaustedAction" value="1"></property>-->
+    </bean>
 
     <!--定义连接工厂-->
     <bean id="jedisConnFactory"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-          p:usePool="${usePool}" p:port="${port}" p:hostName="${ip}" p:database="${database}"/>
+          p:usePool="${usePool}" p:port="${port}" p:hostName="${ip}" p:database="${database}" p:poolConfig-ref="jedisPoolConfig"/>
 
     <!-- redis 模板方法 -->
     <bean id="redisTemplate"
           class="org.springframework.data.redis.core.RedisTemplate"
-          p:connectionFactory-ref="jedisConnFactory">
+          p:connectionFactory-ref="jedisConnFactory" p:enableTransactionSupport="true">
         <!--添加这些序列化器 防止使用spring redis操作redis后 redis的key是乱码 的情况-->
         <property name="keySerializer">
             <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>

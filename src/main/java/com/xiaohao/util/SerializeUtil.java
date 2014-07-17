@@ -1,6 +1,7 @@
 package com.xiaohao.util;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.data.redis.serializer.JacksonJsonRedisSerializer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
@@ -51,4 +52,5 @@ public class SerializeUtil {
     public static  <T> T json2Obj(String json,java.lang.Class<T> clazz){
         return JSON.parseObject(json,clazz);
     }
+
 }
