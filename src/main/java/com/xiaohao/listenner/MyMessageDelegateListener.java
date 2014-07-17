@@ -16,6 +16,7 @@ public class MyMessageDelegateListener implements MessageListener {
      */
     @Override
     public void onMessage(Message message, byte[] bytes) {
-        System.out.println(new String(message.getBody()));
+        System.out.println("messageBody:"+new String(message.getBody()));
+        System.out.println("messageChannel:"+new String(message.getChannel()));
     }
 }
