@@ -20,6 +20,7 @@ public class Starter {
         //ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
         Example e = (Example) ac.getBean("example");
         e.test();
+        e.pipelineSample();
     }
 
 }

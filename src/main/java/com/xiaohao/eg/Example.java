@@ -3,11 +3,19 @@ package com.xiaohao.eg;
 import com.xiaohao.entity.User;
 import com.xiaohao.util.SerializeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.StringRedisConnection;
 import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import redis.clients.jedis.JedisPubSub;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by xiaohao on 2014/7/14.
@@ -80,10 +88,77 @@ public class Example {
         zSetOperations.add("sortSetTest","xiaohao",103);
         zSetOperations.add("sortSetTest","xiaohao",104);
 
-        //
     }
 
 
+    /**
+     * 在连接池环境中，需要借助sessionCallback来绑定connection
+     */
+    public void txUsedPoolSample(){
+        SessionCallback<User> sessionCallback = new SessionCallback<User>() {
+            @Override
+            public User execute(RedisOperations operations) throws DataAccessException {
+               //开启事务
+                operations.multi();
+                User user = new User();
+                user.setId(100);
+                user.setName("xiaohao");
+                user.setPassword("hahaha");
+                String key = "user:" + user.getId();
+                BoundValueOperations<String, User> oper = operations.boundValueOps(key);
+                oper.set(user);
+                oper.expire(60, TimeUnit.MINUTES);
+                //执行
+                operations.exec();
+                return user;
+            }
+        };
+        redisTemplate.execute(sessionCallback);
+    }
+
+    /**
+     * pipeline : 1，正确使用方式 pipeline 方式可以一次执行很多 redis操作 不用一个执行一个返回
+     */
+    public void pipelineSample(){
+        final byte[] rawKey = ((StringRedisSerializer)redisTemplate.getKeySerializer()).serialize("user_total");
+        //pipeline
+        RedisCallback<List<Object>> pipelineCallback = new RedisCallback<List<Object>>() {
+            @Override
+            public List<Object> doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.openPipeline();
+                connection.incr(rawKey);
+                connection.incr(rawKey);
+                return connection.closePipeline();
+            }
+
+        };
+
+        List<Object> results = (List<Object>)redisTemplate.execute(pipelineCallback);
+        for(Object item : results){
+            System.out.println(item.toString());
+        }
+    }
+    //pipeline:备用方式
+    public void pipelineSampleX(){
+        byte[] rawKey = ((StringRedisSerializer)redisTemplate.getKeySerializer()).serialize("T");
+        RedisConnectionFactory factory = redisTemplate.getConnectionFactory();
+        RedisConnection redisConnection = factory.getConnection();
+        List<Object> results;
+        try{
+            redisConnection.openPipeline();
+            redisConnection.incr(rawKey);
+            results = redisConnection.closePipeline();
+        }finally{
+            RedisConnectionUtils.releaseConnection(redisConnection, factory);
+        }
+        if(results == null){
+            return;
+        }
+        for(Object item : results){
+            System.out.println(item.toString());
+        }
+
+    }
 
     public void setRedisTemplate(RedisTemplate<String, String> redisTemplate) {
         this.redisTemplate = redisTemplate;
