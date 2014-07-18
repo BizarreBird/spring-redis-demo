@@ -159,7 +159,7 @@
                     <port>9999</port>
                 </configuration>
             </plugin>
-
+            <!--添加pmd 插件 用来检测一下代码 呵呵-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>

@@ -46,9 +46,33 @@ Redis提供了丰富的命令（command）对数据库和各种数据类型进�
     lpush(key, value)：在名称为key的list头添加一个值为value的元素
     llen(key)：返回名称为key的list的长度
     lrange(key, start, end)：返回名称为key的list中start至end之间的元素（下标从0开始，下同）
+
+    notice !!!
+    -1 表示列表最后一个元素 -2表示列表倒数第二个元素 如果 lrange listtest -1 -2 则什么也没有
+    notice!!!!  应该 lrange listtest -2 -1 最小 然后最大的 才行
+
     ltrim(key, start, end)：截取名称为key的list，保留start至end之间的元素
+
+    example:
+    listtest 1 2 3 4 5 6
+    ltrim listtest 0 2
+    listtest 1 2 3
+
     lindex(key, index)：返回名称为key的list中index位置的元素
+
+    ====listtest 1 2 3
+    lindex listtest 0
+    1
+
+
     lset(key, index, value)：给名称为key的list中index位置的元素赋值为value
+
+    listtest 1 2 3
+    lset listtest 0 3
+    lrange listtest 0 2
+    listtest 3 2 3
+
+
     lrem(key, count, value)：删除count个名称为key的list中值为value的元素。count为0，删除所有值为value的元素，count>0从头至尾删除count个值为value的元素，count<0从尾到头删除|count|个值为value的元素。
     lpop(key)：返回并删除名称为key的list中的首元素
     rpop(key)：返回并删除名称为key的list中的尾元素
