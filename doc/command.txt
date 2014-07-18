@@ -104,14 +104,12 @@ Redis提供了丰富的命令（command）对数据库和各种数据类型进�
     hgetall(key)：返回名称为key的hash中所有的键（field）及其对应的value
 
 21.8持久化
-
     save：将数据同步保存到磁盘
     bgsave：将数据异步保存到磁盘
     lastsave：返回上次成功将数据保存到磁盘的Unix时戳
     shundown：将数据同步保存到磁盘，然后关闭服务
 
 21.9远程服务控制
-
     info：提供服务器的信息和统计
     monitor：实时转储收到的请求
     slaveof：改变复制策略设置

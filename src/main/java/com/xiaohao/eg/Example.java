@@ -87,6 +87,21 @@ public class Example {
         zSetOperations.add("sortSetTest","xiaohao",102);
         zSetOperations.add("sortSetTest","xiaohao",103);
         zSetOperations.add("sortSetTest","xiaohao",104);
+        zSetOperations.zCard("sortSetTest");
+        zSetOperations.incrementScore("sortSettest","xiaohao",457);
+        // key value 时间单位
+        redisTemplate.expire("sortSetTest",1000,TimeUnit.MILLISECONDS);
+        //取得hash操作
+        redisTemplate.opsForHash();
+        //取得list操作
+        redisTemplate.opsForList();
+        //取得value操作
+        redisTemplate.opsForValue();
+        //取得 set操作
+        redisTemplate.opsForSet();
+        //取得sortSet操作
+        redisTemplate.opsForZSet();
+
 
     }
 

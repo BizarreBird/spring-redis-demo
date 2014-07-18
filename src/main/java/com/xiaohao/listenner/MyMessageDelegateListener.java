@@ -16,7 +16,9 @@ public class MyMessageDelegateListener implements MessageListener {
      */
     @Override
     public void onMessage(Message message, byte[] bytes) {
-        System.out.println("messageBody:"+new String(message.getBody()));
+        System.out.println("messageBody:" + new String(message.getBody()));
         System.out.println("messageChannel:"+new String(message.getChannel()));
+        //原来这个bytes 是频道名字的字节数组 下面打印频道名字
+        System.out.println("bytes:"+new String(bytes));
     }
 }
