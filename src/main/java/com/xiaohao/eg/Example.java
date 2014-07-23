@@ -12,9 +12,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.JedisPubSub;
-
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -101,8 +101,7 @@ public class Example {
         redisTemplate.opsForSet();
         //取得sortSet操作
         redisTemplate.opsForZSet();
-
-
+        zSetOperations.rangeWithScores("test", 1, 2);
     }
 
 

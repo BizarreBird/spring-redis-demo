@@ -1,0 +1,15 @@
+
+1,框架自带序列化工具 如下
+    GenericToStringSerializer
+    Jackson2JsonRedisSerializer
+    JacksonJsonRedisSerializer
+    JdkSerializationRedisSerializer
+    OxmSerializer
+    SerializationUtils
+    StringRedisSerializer
+
+
+
+
+
+
