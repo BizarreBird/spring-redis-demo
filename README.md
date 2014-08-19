@@ -8,3 +8,5 @@ spring-redis-demo
 -----------------------------------
 4 基本的简单操作
 -----------------------------------
+ci status
+[![Build Status](https://travis-ci.org/zipu888/spring-redis-demo.svg?branch=master)](https://travis-ci.org/zipu888/spring-redis-demo)
