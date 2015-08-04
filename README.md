@@ -1,12 +1,9 @@
 spring-redis-demo
 =================
-1 ¼¯³Éspring-data-redis
------------------------------------
-2 Ê¹ÓÃmessage¼àÌıÆ÷ 
------------------------------------
-3 Ìí¼Ófastjson ×ª»»pojo ´æ´¢µ½redis
------------------------------------
-4 »ù±¾µÄ¼òµ¥²Ù×÷
------------------------------------
+* é›†æˆspring-data-redis
+* ä½¿ç”¨messageç›‘å¬å™¨ 
+* æ·»åŠ fastjson è½¬æ¢pojo å­˜å‚¨åˆ°redis
+* åŸºæœ¬çš„ç®€å•æ“ä½œ
+
 ci status
 [![Build Status](https://travis-ci.org/zipu888/spring-redis-demo.svg?branch=master)](https://travis-ci.org/zipu888/spring-redis-demo)
